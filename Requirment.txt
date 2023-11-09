@@ -1,0 +1,10 @@
+pip install email_validator
+pip install wtforms
+pip install flask_bcrypt
+pip install flask
+pip install flask_sqlalchemy 
+pip install flask -uploads
+pip install Flask-Reuploaded
+pip install flask-msearch
+pip install Flask-Migrate
+pip install pdfkit

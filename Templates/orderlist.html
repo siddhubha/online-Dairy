@@ -1,0 +1,191 @@
+{% extends "admin_base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+
+
+<div class="container-fluid py-4">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Order List</h6>
+            </div>
+          </div>
+              
+         
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                
+  
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sr</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Customer Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">invoice</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">date_created</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Order</th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+          {%for od in order%}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{od.name}}</td>
+                <td>{{od.invoice}}</td>
+                <td>{{od.status}}</td>
+                <td>{{od.date_created}}</td>
+                <td><a href="{{ url_for('view',id=od.id)}}">view Order</a></td>
+                
+                
+                
+
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+
+
+
+
+<!--
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/">Product</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  categories
+                </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {%for brand in brands%}
+                <li><a class="dropdown-item" href="{{url_for('get_brand',id=brand.id)}}">{{brand.name}}</a></li>
+                {%endfor%}
+                
+              </ul>
+            </li>
+  
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Subcategories
+                </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {%for category in categories%}
+                <li><a class="dropdown-item" href="{{url_for('get_cat',id=category.id)}}">{{category.name}}</a></li>
+                {%endfor%}
+                
+              </ul>
+            </li>
+  
+            <li class="nav-item ">
+              <a class="nav-link " href="{{url_for('getcart')}}">Cart ({{ session['Shoppingcart']|length }})</a>
+            </li>
+          </div>
+        </ul>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class='nav-item'>
+              <li>
+                <form class="form-inline my2 my-lg-0 pull-right pull-left-sm" action="{{url_for('search_for')}}",method='GET' >
+                <input  type="search" placeholder="Search" name="q" aria-label="Search">
+                <input class="btn btn-success" type="submit">
+              </form>
+              
+              </li>
+              </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if current_user.is_authenticated %}
+              <li class="nav-item">
+                <a href="#"class='nav-link'>{{current_user.name}}</a>
+              </li>
+             
+              <li class="nav-item px-3 d-flex align-items-center">
+                <a href="{{url_for('customer_logout')}}" class="nav-link text-body font-weight-bold px-0">
+                  <i class="fa fa-sign-out me-sm-1"></i>
+                  <span class="d-sm-inline d-none">Logout</span>
+                </a>
+              </li>
+              {%else%}
+              <li class="nav-item">
+                <a href="{{url_for('custtomer_register')}}"class='nav-link'>SignUp</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url_for('LoginCustomer')}}"class='nav-link'>LogIn</a>
+              </li>
+              {%endif%}
+          </ul>
+
+          
+
+<li class="nav-item dropdown pe-2 d-flex align-items-center">
+    <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="my-auto d-flex flex-column justify-content-center px-3">
+        <i class="material-icons opacity-10">add</i>
+        <h6 class="text-sm font-weight-normal mb-1">
+          <span class="font-weight-bold">Add</span> 
+        </h6>                 
+      </div>
+      
+    </a>
+            <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+              {%for category in categories%}
+              <li class="mb-2">
+                <a class="dropdown-item border-radius-md" href="{{url_for('get_cat',id=category.id)}}">
+                  <div class="d-flex py-1">
+                    
+                    <div class="d-flex flex-column justify-content-center px-3">
+                      <h6 class="text-sm font-weight-normal mb-1">
+                        <span class="font-weight-bold">{{category.name}}</span> 
+                      </h6>
+                      
+                    </div>
+                  </div>
+                </a>
+              </li>
+              {% endfor %}
+
+
+  
+
+
+
+</div>
+</div>
+</nav>
+
+
+
+
+
+-->

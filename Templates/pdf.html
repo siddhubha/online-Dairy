@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INVOICE :- OurDairy</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  </head>
+
+
+  <body>
+        <header class="clearfix">
+                <div>
+                   <h1 class="tx">INVOICE</h1>
+                </div>
+             </header>
+             <hr>
+             <hr>
+
+   <div class='container'>
+        <div class='row'>
+                
+                <div class='row'>
+                        <div style='float:right;'>
+                                Bill Number:- {{orders.invoice}}<br>
+                                Status:- {{orders.status}}<br>
+                                Customer Name:- {{current_user.name}}<br>
+                        </div>
+                        <div style='float:left;'>
+                                Address:-{{orders.address}} ,{{orders.city}} ,{{orders.state}} ,{{orders.country}}<br>
+                                pincode:- {{orders.zipcode}}<br>
+                                Number:- {{orders.contact}}
+                        </div>
+                </div>
+                <div class='row'>
+                        <div>
+                                <table class='table table-sm'>
+                                                <thead>
+                                                        <th>Sr</th>
+                                                
+                                                        <th>Name</th>
+                                                        <th>Price</th>
+                                                        <th>Quantity</th>
+                                                        <th>Diccount</th>
+                                                        <th>Total</th>
+                                                        
+                                                        
+                                                </thead>
+                                                <tbody>
+                                                {%for key, product in orders.orders.items() %}
+                                                {% set discount ='%0.2f'|format((product.discount/100)*product.price|float) %}
+                                                        <tr>
+                                                                <td>{{loop.index}}</td>
+                                                                
+                                                                <td>{{product.name}}</td>
+                                                                <td>{{product.price}}</td>
+                                                                <td>{{product.quantity}}</td>
+                                                                {% if product.discount > 0%}
+                                                                <td>{{product.discount}} % &nbsp; {{discount}}</td>
+                                                                {%else%}
+                                                                <td></td>
+                                                                {%endif%}
+                                                                {% set subtotal =product.quantity|int * product.price|float%}
+                                                                <td>{{ "{:.2f}".format((subtotal|float-discount|float))}}</td>
+                                                                
+                                                        </tr>
+                                                        
+
+                                                {%endfor%}
+                                                
+                                                        
+                                        </table>
+                                        <table class="table table-sm">
+                                                <tr><td colspan="4"><h3>Total :<b> {{grandTOtal}}</b></h3></td></tr>
+                                                
+                                        </table>
+                        </div>
+                </div>
+        </div>
+                                        <div>
+                                                - Order Will Come to your Place at Tommoro brfore 10 A.M.
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class='text-center'>
+                                                Thank You Are shopping With US <br> 
+                                                if Any Doute Please Contact US 
+                                        </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+ 
+  </body>
+</html>
+
+
+
+

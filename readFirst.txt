@@ -1,0 +1,1 @@
+For pdf genret first install pdfkit after that goto wkhtmltopdfand install wkhtmltopdf.exe for dependance 

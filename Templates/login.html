@@ -1,0 +1,136 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="/static/assets/img/favicon.png">
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>OurDairy</title>
+    {% endif %}
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="/static/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="/static/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+  
+    <style>
+        body, html {
+          height: 100%;
+          margin: 0;
+        }
+        
+        .bg {
+          /* The image used */
+          background-image: url("/static/assets/img/bg.jpg");
+        
+          /* Full height */
+          height: 100%; 
+        
+          /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        </style>
+  
+  </head> 
+  <body class="g-sidenav-show bg-gray-200">
+    
+    
+  
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    
+      <!--For message flashes-->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class=flashes>
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %} 
+      <!---->
+
+<div class="text-center text-danger h1 "></div>
+<div class="container bg">
+    {% from "_formhelpers.html" import render_field %}
+
+<div class="container">
+  <div class="row  ">
+      <div class="col-lg-3 col-md-2"></div>
+      <div class="col-lg-6 col-md-8 login-box border" style="background: ivory;margin-top: 117px;">
+          <div class="col-lg-12 login-key">
+              <i class="fa fa-key" aria-hidden="true"></i>
+          </div>
+          <div class="text-center text h1 col-lg-12 login-title">
+              ADMIN PANEL 
+          </div>
+
+          <div class="col-lg-12 login-form">
+              <div class="col-lg-12 login-form">
+                <form method="post", enctype="multipart/form-data">
+                      <div class="form-group">
+                        {{ render_field(form.email, class="form-control") }}
+                      </div>
+                      <div class="form-group">
+                        {{ render_field(form.password, class="form-control") }}
+                      </div>
+
+                      <div class="col-lg-12 loginbttm">
+                          <div class="col-lg-6 login-btm login-text">
+                              <!-- Error Message -->
+                          </div>
+                          <div class="col-lg-6 login-btm login-button text-left">
+                              <button type="submit" class="btn btn-outline-primary ">LOGIN</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-2"></div>
+      </div>
+  </div>
+
+  
+
+
+
+
+
+</main>
+  
+{% include 'includes/fixed-plugin.html' %}
+
+{% include 'includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+
+<script>
+  var win = navigator.platform.indexOf('Win') > -1;
+  if (win && document.querySelector('#sidenav-scrollbar')) {
+    var options = {
+      damping: '0.5'
+    }
+    Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+  }
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="/static/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+
+</body> 
+</html>

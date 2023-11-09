@@ -1,0 +1,39 @@
+{% extends "admin_base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+            {%if updatebrand%}
+            <h1 claas="text-center mt-5">Update categories </h1>
+            <form action='' method='POST'>
+                <input type="text" name="brand" class="form-control" value="{{updatebrand.name}}">
+                <input type="submit" value="Update" class="btn btn-info mt-2">
+                <a href="{{url_for('cat')}}"class="btn btn-secondary mt-2">Cancle</a>
+             </form>
+             {%else%}
+             <h1 claas="text-center mt-5">Update Subcategory</h1>
+            <form action='' method='POST'>
+                <input type="text" name="Category" class="form-control" value="{{updatesubcat.name}}">
+                <input type="submit" value="update Category" class="btn btn-info mt-2">
+                <a href="{{url_for('subcat')}}"class="btn btn-secondary mt-2">Cancle</a>
+             </form>
+             {%endif%}
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    
+
+    {% endblock content %}
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}

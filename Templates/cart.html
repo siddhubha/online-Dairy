@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% include 'navbar.html' %}
+{% block content %}
+
+
+<div class='container'>
+        <div class='row'>
+                <table class='table table-sm'>
+                        <thead>
+                                <th>Sr</th>
+                                <th>image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Diccount</th>
+                                <th>Sub Total</th>
+                                <th>Update</th>
+                                <th>Remove</th>
+                                
+                        </thead>
+                        <tbody>
+                            {%for key, product in session['Shoppingcart'].items() %}
+                            {% set discount ='%0.2f'|format((product.discount/100)*product.price|float) %}
+                                <tr>
+                                        <td>{{loop.index}}</td>
+                                        <td><img src="{{url_for('static',filename='images/'+product.image)}}" alt="{{product.name}}" width="50",height="35"></td>
+                                        <td>{{product.name}}</td>
+                                        <form action="{{url_for('updatecart', code=key)}}" method='POST'>
+                                        <td>{{product.price}}</td>
+                                        <td>
+                                                <input type="number" name="quantity" min="1" max="10" value={{product.quantity}}>
+                                                
+                                        </td>
+                                        {% if product.discount > 0%}
+                                        <td>{{product.discount}} % &nbsp; {{discount}}</td>
+                                        {%else%}
+                                        <td></td>
+                                        {%endif%}
+                                        {% set subtotal =product.quantity|int * product.price|float%}
+                                        <td>{{ "{:.2f}".format((subtotal|float-discount|float))}}</td>
+                                        <td><button type='submit' class='btn btn-sm btn-info'> Update</button></td>
+                                        </form>
+                                        <td>
+                                                
+                                                
+                                                <form action="{{url_for('deleteitem', id=key)}}" method="post">
+                                                <button class="btn btn-sm btn-danger" onclick="return confirm('Are you Sure that you want to Remove ({{ product.name }}) from Cart ?');" 
+                                                >Remove</button>
+                                                </form>
+                                        </td>
+                                </tr>
+
+
+                            {%endfor%}
+                        
+                                
+                </table>
+                <table class="table table-sm">
+                        <tr>
+                                <td></td>
+                                <td>
+                                        <a href='/'>Countinue Shopping</a>
+                                        <br>
+                                        <br>
+                                        <a href="{{url_for('getorder')}}">Place Order</a>
+                                </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                <td colspan="4"><h3>Grand Total :<b> {{grandtotal}}</b></h3></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                         
+                                        <form action="{{url_for('clearcart')}}" method="post">
+                                                <button class="btn btn-danger btn-sm mr-1" onclick="return confirm('Are you Sure that you want to Clear Cart ?');" 
+                                                >Clear Cart </button>
+                                                </form>
+                                </td>
+                                
+                        </tr>
+                         
+
+                </table>
+        </div>
+</div>
+
+{% endblock content %}

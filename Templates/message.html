@@ -1,0 +1,73 @@
+{% extends "admin_base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<!--<div class="container">
+    <table class="table table-sm">
+      <thead>
+        <th>Sr</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </thead>
+        <tbody>
+Try-->
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">Contact Us table</h6>
+        </div>
+    </div>
+        
+   
+    <div class="card-body px-0 pb-2">
+      <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0">
+          
+
+          <thead>
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sr</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Message</th>
+              <th class="text-secondary opacity-7"></th>
+            </tr>
+          </thead>
+          {% for mes in mes %}
+          <tr>
+            <td>{{loop.index}}</td>
+            <td>{{mes.name}}</td>
+            <td>{{mes.email}} </td>
+            <td>
+              {{mes.Message}}
+              
+              
+            </td>
+          </tr>
+              
+        </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+{% endfor %}
+
+</tbody>
+</table>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

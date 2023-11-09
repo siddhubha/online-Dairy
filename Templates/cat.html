@@ -1,0 +1,126 @@
+{% extends "admin_base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<!--<div class="container">
+    <table class="table table-sm">
+      <thead>
+        <th>Sr</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </thead>
+        <tbody>
+Try-->
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            {%if categories%}
+            <h6 class="text-white text-capitalize ps-3">Category Table</h6>
+            {%else%}
+            <h6 class="text-white text-capitalize ps-3">Brand Table</h6>
+            {%endif%}
+          </div>
+        </div>
+            
+       
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              
+
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sr</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Edit</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Delete</th>
+                  <th class="text-secondary opacity-7"></th>
+                </tr>
+              </thead>
+              <tbody>
+        {% if brands %}
+          {% for brand in brands %}
+          <tr>
+            <td>{{loop.index}}</td>
+            <td>{{brand.name}}</td>
+            <td><a href= "{{ url_for('update',id=brand.id)}}" class="btn btn-sm btn-outline-info"> Edit </a> </td>
+            <td>
+              
+              
+              <form action="{{url_for('deletecat' , id=brand.id)}}" method="post">
+                  <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure want to Delete this Brand {{brand.name}} ???');" 
+                  >Delete</button>
+                  </form>
+
+            </td>
+          </tr>
+          
+
+
+
+
+
+          {% endfor %}
+
+          {%else%}
+          {%for category in categories  %}
+          <tr><b>
+            <td class="mb-0 text-sm">
+              {{loop.index}}
+            </td>
+            <td class="mb-0 text-sm">
+              {{category.name}}
+            </td>
+            <td class="align-middle">        
+              <a href="{{ url_for('updatesub',id=category.id)}}"class="btn btn-secondary btn-sm">Edit </a> 
+            </td>
+            <td class="align-middle">        
+             
+              <form action="{{url_for('deletesubcat' , id=category.id)}}" method="post">
+                <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure want to Delete this Category  {{category.name}} ???');" 
+                >Delete</button>
+                </form>
+            </b>
+            </td>
+         
+            
+              
+
+           
+          </tr>
+          
+
+        
+
+
+          {% endfor %}  
+
+
+
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         
+        {% endif %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

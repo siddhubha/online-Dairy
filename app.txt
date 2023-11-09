@@ -1,0 +1,5 @@
+set FLASK_APP=(filename).py
+set FLASK_APP=main.py
+if this is on work try:
+	$env:FLASK_APP = "(filename.py)"
+	$env:FLASK_APP = "main.py"

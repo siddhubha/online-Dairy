@@ -1,0 +1,144 @@
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/">Product</a>
+            </li>
+
+
+            <ul class="navbar-nav pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="my-auto d-flex flex-column justify-content-center px-3">
+                  <h6 class="text-sm font-weight-normal mb-1">
+                    Brand
+                  </h6>                 
+                </div>
+                <ul class="dropdown-menu   px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                  {%for brand in brands%}
+                        <li class="mb-2">
+                          <a class="dropdown-item border-radius-md" href="{{url_for('get_brand',id=brand.id)}}">
+                            <div class="d-flex py-1">
+                              
+                              <div class="d-flex flex-column justify-content-center px-3">
+                                <h6 class="text-sm font-weight-normal mb-1">
+                                  <span class="font-weight-bold">{{brand.name}}</span> 
+                                </h6>
+                                
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        {% endfor %}
+                </ul>
+              <li>
+
+              </li>
+            </a>
+            </ul>
+
+            <ul class="navbar-nav pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="my-auto d-flex flex-column justify-content-center px-3">
+                  <h6 class="text-sm font-weight-normal mb-1">
+                    categories
+                  </h6>                 
+                </div>
+                <ul class="dropdown-menu   px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                  {%for category in categories%}
+                        <li class="mb-2">
+                          <a class="dropdown-item border-radius-md" href="{{url_for('get_cat',id=category.id)}}">
+                            <div class="d-flex py-1">
+                              
+                              <div class="d-flex flex-column justify-content-center px-3">
+                                <h6 class="text-sm font-weight-normal mb-1">
+                                  <span class="font-weight-bold">{{category.name}}</span> 
+                                </h6>
+                                
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        {% endfor %}
+                </ul>
+              <li>
+
+              </li>
+            </a>
+            </ul>
+
+
+
+            
+  
+          
+
+  
+            <li class="nav-item ">
+              <a class="nav-link " href="{{url_for('getcart')}}">Cart ({{ session['Shoppingcart']|length }})</a>
+            </li>
+          </div>
+        </ul>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+
+            
+
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+
+                                      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                                        <li class='nav-item'>
+                                        <li>
+                                          <form class="form-inline my2 my-lg-0 pull-right pull-left-sm" action="{{url_for('search_for')}}",method='GET' >
+                                          <input  type="search" placeholder="Search" name="q" aria-label="Search">
+                                          <input class="btn btn-success" type="submit">
+                                        </form>
+                                        
+                                        </li>
+                                        </li>
+                                      </ul>
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      {% if current_user.is_authenticated %}
+                      <li class="nav-item">
+                        <a href="#"class='nav-link'>{{current_user.name}}</a>
+                      </li>
+                     
+                      <li class="nav-item px-3 d-flex align-items-center">
+                        <a href="{{url_for('customer_logout')}}" class="nav-link text-body font-weight-bold px-0">
+                          <i class="fa fa-sign-out me-sm-1"></i>
+                          <span class="d-sm-inline d-none">Logout</span>
+                        </a>
+                      </li>
+                      {%else%}
+                      <li class="nav-item">
+                        <a href="{{url_for('custtomer_register')}}"class='nav-link'>SignUp</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{url_for('LoginCustomer')}}"class='nav-link'>LogIn</a>
+                      </li>
+                      {%endif%}
+                      <li class="nav-item">
+                        <a href="/aboutus"class='nav-link'>Anout Us</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/contact_us"class='nav-link'>contact us</a>
+                      </li>
+                  </ul>
+                      
+
+          
+            
+        
+          
+
+        </div>
+      </div>
+    </nav>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% include 'navbar.html' %}
+
+{% block content %}
+    <div class="text-center h1 text-danger" >Contact Us</div>
+        <div class="container">
+            {% from "_formhelpers.html" import render_field %}
+            <form method="POST" enctype="multipart/form-data">
+                <div>
+                    {{ render_field(form.name ,class="form-control") }}
+                    
+                    {{ render_field(form.email ,class="form-control") }}
+
+                    {{render_field(form.Message ,class="form-control")}}
+                   
+                <input type=submit value="Contact" class="btn btn-info "></p>
+                </form>
+            
+        </div>
+    
+        
+{%include 'footer.html'%}
+{% endblock content %}
